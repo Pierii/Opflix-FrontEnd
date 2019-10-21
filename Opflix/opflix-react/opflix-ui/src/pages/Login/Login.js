@@ -35,9 +35,9 @@ class Login extends Component {
                 if (response.status === 200) {
                     console.log(response.data.token)
                     localStorage.setItem("usuario-opflix", response.data.token);
-                    this.props.history.push("/categorias");
+                    this.props.history.push("/lancamentos");
                 } else {
-                    console.log("meh");
+                    console.log("algo de errado :( ");
                 }
             })
             .catch(erro => {this.setState({erro: "Usuário ou senha inválidos"});
@@ -77,4 +77,3 @@ class Login extends Component {
 }
 
 export default Login;
-

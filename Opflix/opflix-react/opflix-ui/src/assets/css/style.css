@@ -13,14 +13,26 @@ nav{
     color: #ffffff;
 }
 .homeCorpoTop{
-    background-image: url(../img/Banner.png);
+    background: linear-gradient(to left , rgba(255,255,255,0), rgb(0, 0, 0)), url(../img/Banner.png);
     background-repeat: no-repeat;
     background-position: right;
     padding-top: 10em;
 }
 .homeCorpoBot{
-    background-image: url(../img/Banner2.png);
+    background: linear-gradient(to right , rgba(255,255,255,0), rgb(0, 0, 0)), url(../img/Banner2.png);
     background-repeat: no-repeat;
     background-position: left;
     padding-top: 10em;
+    text-align: right;
+}
+.homeCorpoBot > h2{
+    font-size: 2em;
+}
+.homeCorpoBot > p{
+    font-size: 1.2em;
+}
+.login_btn{
+    background: blue;
+    text-decoration: none;
+    color: #ffffff;
 }
