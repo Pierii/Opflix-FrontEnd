@@ -1,12 +1,48 @@
+import { Route, Link, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+
+import App from './pages/Home/App';
+import Categorias from './pages/Categorias/Categorias';
+import NaoEncontrado from './pages/NaoEncontrado/NaoEncontrado';
+import Login from "./pages/Login/Login";
+import Lancamentos from "./pages/Lancamentos/Lancamentos";
+import Cadastro from "./pages/Cadastro/Cadastro";
+
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+//rotas
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+const RotaPrivada = ({ component: Component }) => (
+    <Route
+        render={props =>
+            localStorage.getItem("usuario-opflix") !== null ?
+                <Component {...props} />
+                :
+                <Redirect
+                    to={{ pathname: "/login", state: { from: props.location } }}
+                />
+        }
+    >
+    </Route>
+)
+const routing = (
+    <Router>
+        <div>
+            <Switch>
+                <Route exact path='/' component={App} />
+                <RotaPrivada path='/categorias' component={Categorias} />
+                <RotaPrivada path="/lancamentos" component={Lancamentos} />
+                <Route path="/login" component={Login} />
+                <Route path="/cadastro" component={Cadastro} />
+                <Route component={NaoEncontrado} />
+            </Switch>
+        </div>
+    </Router>
+)
+
+ReactDOM.render(routing, document.getElementById('root'));
+
 serviceWorker.unregister();

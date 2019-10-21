@@ -1,0 +1,26 @@
+body{
+    background: #ffffff;
+}
+nav{
+    background: #ffffff;
+    box-shadow: 0 10px 6px -2px #00000033;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.corpo {
+    background: #000000;
+    color: #ffffff;
+}
+.homeCorpoTop{
+    background-image: url(../img/Banner.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    padding-top: 10em;
+}
+.homeCorpoBot{
+    background-image: url(../img/Banner2.png);
+    background-repeat: no-repeat;
+    background-position: left;
+    padding-top: 10em;
+}

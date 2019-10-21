@@ -1,8 +1,49 @@
 import React, { Component } from "react";
 
-import logo from "../src/assets/img/Opflix logo2.png";
+import logo from "../../assets/img/OpflixLogo2.png";
+
+import { Link } from "react-router-dom";
+
+import Axios from "axios";
 
 class Login extends Component {
+
+    constructor() {
+        super();
+        this.state = {
+            email: "",
+            senha: "",
+            erro: ""
+        }
+    }
+    atualizaEstadoEmail = (event) => {
+        this.setState({ email: event.target.value });
+    }
+
+    atualizaEstadoSenha = (event) => {
+        this.setState({ senha: event.target.value });
+    }
+
+    efetuarLogin = (event) => {
+        event.preventDefault();
+
+        Axios.post("http://192.168.7.85:5000/api/login", {
+            email: this.state.email,
+            senha: this.state.senha
+        })
+            .then(response => {
+                if (response.status === 200) {
+                    console.log(response.data.token)
+                    localStorage.setItem("usuario-opflix", response.data.token);
+                    this.props.history.push("/categorias");
+                } else {
+                    console.log("meh");
+                }
+            })
+            .catch(erro => {this.setState({erro: "Usuário ou senha inválidos"});
+                console.log(erro);
+            });
+        }
 
     render() {
         return (
@@ -27,9 +68,9 @@ class Login extends Component {
                     />
                 </div>
                 <div className="button">
-                    <button className="submit_login" id="">Fazer login</button>
+                    <button className="submit_login">Fazer login</button>
                 </div>
-                    <a href="">Não tem uma conta?</a>
+                <Link className="login_a" to="/cadastro">Não tem uma conta?</Link>
             </section>
         );
     }
