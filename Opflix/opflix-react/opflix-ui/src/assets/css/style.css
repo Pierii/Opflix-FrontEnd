@@ -1,38 +1,68 @@
+*{
+    margin: auto;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
 body{
     background: #ffffff;
 }
+/* NAV */
 nav{
     background: #ffffff;
     box-shadow: 0 10px 6px -2px #00000033;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    position: fixed; 
+    top: 0; 
+    width: 100%; 
 }
+nav > .spike{
+    position: absolute;
+    display: flex;
+    margin-left: 50em;
+}
+/* FIM NAV */
 .corpo {
     background: #000000;
     color: #ffffff;
 }
 .homeCorpoTop{
+    margin-top: 5em;
     background: linear-gradient(to left , rgba(255,255,255,0), rgb(0, 0, 0)), url(../img/Banner.png);
     background-repeat: no-repeat;
     background-position: right;
-    padding-top: 10em;
+    background-size: 60em;
+    padding: 7em;
 }
 .homeCorpoBot{
-    background: linear-gradient(to right , rgba(255,255,255,0), rgb(0, 0, 0)), url(../img/Banner2.png);
+    background: linear-gradient(to right , rgba(0, 0, 0, 0.164), rgb(0, 0, 0)), url(../img/Banner2.png);
     background-repeat: no-repeat;
+    background-size: 40em;
     background-position: left;
-    padding-top: 10em;
+    padding: 7em;
     text-align: right;
 }
-.homeCorpoBot > h2{
+.homeCorpoBot, .homeCorpoTop > h2{
     font-size: 2em;
 }
-.homeCorpoBot > p{
+.homeCorpoBot, .homeCorpoTop > p{
     font-size: 1.2em;
 }
 .login_btn{
-    background: blue;
+    background: rgb(70, 70, 219);
     text-decoration: none;
+    font-size: 2em;
     color: #ffffff;
+    border-radius: 5px;
+    padding: 10px;
 }
+/* FOOTER */
+footer{
+    background: #ffffff;
+    color: #000000;
+    /* position: absolute;
+    bottom: 0; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 5em;
+}
+/* FIM FOOTER */

@@ -1,6 +1,8 @@
 import React from 'react';
 import logo from "../../assets/img/OpflixLogo2.png";
 
+import "../../assets/css/style.css"
+
 function Footer(){
     return(
         <footer>

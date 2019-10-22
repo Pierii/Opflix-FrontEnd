@@ -50,7 +50,7 @@ class Cadastro extends Component {
                 <div className="button">
                     <button className="submit_cadastro">Fazer cadastro</button>
                 </div>
-                <Link className="cadastro_a" to="/cadastro">Não tem uma conta?</Link>
+                <Link className="cadastro_a" to="/login">Já tem uma conta?</Link>
             </section>
         )
 

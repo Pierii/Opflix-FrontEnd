@@ -10,6 +10,7 @@ import NaoEncontrado from './pages/NaoEncontrado/NaoEncontrado';
 import Login from "./pages/Login/Login";
 import Lancamentos from "./pages/Lancamentos/Lancamentos";
 import Cadastro from "./pages/Cadastro/Cadastro";
+import CadastrarLancamentos from "./pages/CadastrarLancamentos/CadastrarLancamentos";
 
 import * as serviceWorker from './serviceWorker';
 
@@ -35,6 +36,7 @@ const routing = (
                 <Route exact path='/' component={App} />
                 <RotaPrivada path='/categorias' component={Categorias} />
                 <RotaPrivada path="/lancamentos" component={Lancamentos} />
+                <RotaPrivada path="/cadastrarLancamentos" component={CadastrarLancamentos} />
                 <Route path="/login" component={Login} />
                 <Route path="/cadastro" component={Cadastro} />
                 <Route component={NaoEncontrado} />
