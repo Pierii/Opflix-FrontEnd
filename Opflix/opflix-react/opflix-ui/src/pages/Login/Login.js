@@ -7,18 +7,27 @@ import "../../assets/css/login.css";
 import { Link } from "react-router-dom";
 
 import Axios from "axios";
-// import Footer from "../../components/Footer/Footer";
+import Footer from "../../components/Footer/Footer";
+
+import { parseJwt } from '../../services/auth';
+
 
 class Login extends Component {
 
     constructor() {
         super();
-        localStorage.removeItem("usuario-opflix");
         this.state = {
             Email: "",
             Senha: "",
             Erro: ""
-        }
+        };
+        this.state = {
+            Permissao : ''
+        };
+    }
+
+    componentDidMount(){
+        this.setState({permissao: parseJwt().Permissao})
     }
 
     atualizaEstadoEmail = (event) => {
@@ -59,6 +68,7 @@ class Login extends Component {
 
     render() {
         return (
+            <div>
             <section className="loginCorpo">
                 <img src={logo} />
                 <form onSubmit={this.efetuarLogin}>
@@ -88,6 +98,8 @@ class Login extends Component {
                     <Link className="login_a" to="/cadastro">Não tem uma conta?</Link>
                 </form>
             </section>
+            <Footer></Footer>
+            </div>
         );
     }
 }

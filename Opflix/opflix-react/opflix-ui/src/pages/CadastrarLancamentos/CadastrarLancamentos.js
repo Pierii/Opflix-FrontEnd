@@ -1,173 +1,171 @@
 import React, { Component } from 'react';
 
-import logo from '../../assets/img/OpflixLogo2.png';
-import Axios from 'axios';
+import logo from "../../assets/img/OpflixLogo2.png";
 
-// import "../../assets/css/style.css";
+import Nav from "../../components/Nav/Nav";
 
-class Lancamentos extends Component {
+import Footer from "../../components/Footer/Footer";
+import { parseJwt } from "../../services/auth";
 
+class LancamentosAdmin extends Component {
     constructor() {
         super();
         this.state = {
-            lista: []
+            Permissao: ''
+        }; this.state = {
+            lista: [
+            ],
+            Titulo: '',
+            Sinopse: '',
+            Veiculo: '',
+            TempoDuracao: '',
+            IdCategoria: '',
+            DataLancamento: '',
+            Formato: ''
         };
-    }
-    componentDidMount() {
-        Axios.get('http://192.168.7.85:5000/api/Lancamentos')
-            .then(data => {
-                this.setState({ lista: data.data });
-            })
-            .catch(erro => {
-                console.log(erro);
-            });
+        this.cadastrarLancamento = this.cadastrarLancamento.bind(this);
     }
 
-    listaAtualizada = () => {
-        fetch('http://192.168.7.85:5000/api/Lancamentos')
-            .then(response => response.json())
-            .then(data => this.setState({ lista: data }));
-    }
-
-    adicionaItem = (event) => {
+    cadastrarLancamento(event) {
         event.preventDefault();
-        console.log(this.state.titulo);
-        fetch('http://192.168.7.85:5000/api/Lancamentos', {
+        fetch("http://localhost:5000/api/lancamentos", {
             method: "POST",
-            body: JSON.stringify({ Titulo: this.state.Titulo, DataLancamento: this.state.DataLancamento, TempoDuracao: this.state.TempoDuracao, idCategoriaNavigation: this.state.idCategoriaNavigation, Sinopse: this.state.Sinopse}),
+            body: JSON.stringify({ Titulo: this.state.Titulo, Sinopse: this.state.Sinopse, Veiculo: this.state.Veiculo, TempoDuracao: this.state.TempoDuracao, IdCategoria: this.state.IdCategoria, DataLancamento: this.state.DataLancamento, Formato: this.state.Formato}),
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Accept": "application/json"
             }
         })
-            .then(this.listaAtualizada())
-            .catch(error => console.log(error))
-
-        // 
-        // headers: 
-
+            .then(response => response.json())
+            .catch(error => console.log(error));
     }
 
-    adicionaEvento = () => {
-        let valores_lista = this.state.lista;
-        let lancamento = { nome: this.state.nome }
-
-        valores_lista.push(lancamento);
-
-        this.setState({ lista: valores_lista });
+    atualizarTitulo(event) {
+        this.setState({ Titulo: event.target.value })
     }
 
-    atualizarNome = (event) => {
-        this.setState({ nome: event.target.value })
-        console.log(this.state);
+    atualizarSinopse(event) {
+        this.setState({ Sinopse: event.target.value })
     }
 
-    atualizarData = (event) => {
-        this.setState({ dataEvento: event.target.value })
-        console.log(this.state);
+    atualizarVeiculo(event) {
+        this.setState({ Veiculo: event.target.value })
     }
 
+    atualizarTempoDuracao(event) {
+        this.setState({ TempoDuracao: event.target.value })
+    }
+
+    atualizarIdCategoria(event) {
+        this.setState({ IdCategoria: event.target.value })
+    }
+    
+    atualizarDataLancamento(event) {
+        this.setState({ DataLancamento: event.target.value })
+    }
+
+    atualizarFormato(event) {
+        this.setState({ Formato: event.target.value })
+    }
+
+    componentDidMount() {
+        this.setState({ Permissao: parseJwt().Permissao })
+    }
 
     render() {
         return (
-            <div >
+            <div>
                 <header className="cabecalhoPrincipal">
                     <div className="container">
-                        <img src={logo} />
 
                         <nav className="cabecalhoPrincipal-nav">
-                            Administrador
+                            {this.state.Permissao}
                         </nav>
                     </div>
                 </header>
 
                 <main className="conteudoPrincipal">
                     <section className="conteudoPrincipal-cadastro">
-
-                        <div className="container" id="conteudoPrincipal-lista">
-
-                            <table id="tabela-lista">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Lancamento</th>
-                                        <th>Tempo de Duração</th>
-                                        <th>Veículo</th>
-                                        <th>Categoria do Lancamento</th>
-
-                                    </tr>
-                                </thead>
-
-                                <tbody id="tabela-lista-corpo">
-                                    {
-                                        this.state.lista.map(element => {
-                                            return (
-                                                <tr>
-                                                    <td>{element.idEvento}</td>
-                                                    <td>{element.titulo}</td>
-                                                    <td>{element.dataEvento}</td>
-                                                    <td>{element.ativo ? 'Netflix' : 'Amazon Prime Video'}</td>
-                                                    <td>{element.idCategoriaNavegation}</td>
-                                                </tr>
-                                            )
-                                        })
-                                    }
-                                </tbody>
-                            </table>
-
-                        </div>
-
+                        <h1 className="conteudoPrincipal-cadastro-titulo">Lançamentos</h1>
+   
                         <div className="container" id="conteudoPrincipal-cadastro">
-                            <h2 className="conteudoPrincipal-cadastro-titulo">Cadastrar Lançamento</h2>
-                            <div className="container">
-
-                                <input
-                                    type="text"
-                                    className="className__evento"
-                                    id="evento__titulo"
-                                    placeholder="título do lançamento"
-                                    value={this.state.nome}
-                                    onInput={this.atualizarNome}
-                                />
-
-                                <input
-                                    type="text"
-                                    id="evento__localizacao"
-                                    placeholder="duração"
-                                />
-
-                                <input
-                                    type="text"
-                                    id="evento__data"
-                                    placeholder="dd/MM/yyyy"
-                                    value={this.state.dataEvento}
-                                    onInput={this.atualizarData}
-                                />
-                                <select id="option__acessolivre">
-                                    <option value="1">Ativo</option>
-                                    <option value="0">Desativo</option>
-                                </select>
-                                <select id="option__tipoevento">
-                                    <option value="0" disabled>Categoria do Lançamento</option>
-                                </select>
-                                <textarea
-                                    rows="3"
-                                    cols="50"
-                                    placeholder="descrição do evento"
-                                    id="evento__descricao"></textarea>
-
-                            </div>
-                            <button
-                                id="btn__cadastrar"
-                                onClick={this.adicionaItem}
-                                className="conteudoPrincipal-btn conteudoPrincipal-btn-cadastro"
-                            >Cadastrar</button>
+                            <h2 className="conteudoPrincipal-cadastro-titulo">
+                                Cadastrar Lançamento
+                        </h2>
+                            <form onSubmit={this.cadastrarLancamento}>
+                                <div className="listagem">
+                                    <input
+                                        type="text"
+                                        className="className__titulo"
+                                        id="input__titulo"
+                                        placeholder="Título"
+                                        value={this.state.Titulo}
+                                        onChange={this.atualizarTitulo.bind(this)}
+                                    />
+                                    <input
+                                        type="text"
+                                        className="className__sinopse"
+                                        id="input__sinopse"
+                                        placeholder="Sinopse"
+                                        value={this.state.Sinopse}
+                                        onChange={this.atualizarSinopse.bind(this)}
+                                    />
+                                    <input
+                                        type="text"
+                                        className="className__veiculo"
+                                        id="input__veiculo"
+                                        placeholder="Veículo"
+                                        value={this.state.Veiculo}
+                                        onChange={this.atualizarVeiculo.bind(this)}
+                                    />
+                                    <input
+                                        type="text"
+                                        className="className__tempoduracao"
+                                        id="input__tempoduracao"
+                                        placeholder="Tempo de Duração"
+                                        value={this.state.TempoDuracao}
+                                        onChange={this.atualizarTempoDuracao.bind(this)}
+                                    />
+                                    <input
+                                        type="text"
+                                        className="className__idcategoria"
+                                        id="input__idcategoria"
+                                        placeholder="IdCategoria"
+                                        value={this.state.IdCategoria}
+                                        onChange={this.atualizarIdCategoria.bind(this)}
+                                    />
+                                    <input
+                                        type="text"
+                                        className="className__datalancamento"
+                                        id="input__datalancamento"
+                                        placeholder="Data de Lançamento"
+                                        value={this.state.DataLancamento}
+                                        onChange={this.atualizarDataLancamento.bind(this)}
+                                    />
+                                    <input
+                                        type="text"
+                                        className="className__formato"
+                                        id="input__formato"
+                                        placeholder="Formato"
+                                        value={this.state.Formato}
+                                        onChange={this.atualizarFormato.bind(this)}
+                                    />
+                                    <button
+                                        id="btn__cadastrar"
+                                        className="conteudoPrincipal-btn conteudoPrincipal-btn-cadastro"
+                                    >
+                                        Cadastrar
+                            </button>
+                                </div>
+                            </form>
                         </div>
+
                     </section>
                 </main>
 
-            </div>
-        );
+                <Footer></Footer>
+            </div>);
     }
 }
 
-export default Lancamentos
+export default LancamentosAdmin;

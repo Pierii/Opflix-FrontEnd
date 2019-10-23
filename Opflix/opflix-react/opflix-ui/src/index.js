@@ -11,8 +11,10 @@ import Login from "./pages/Login/Login";
 import Lancamentos from "./pages/Lancamentos/Lancamentos";
 import Cadastro from "./pages/Cadastro/Cadastro";
 import CadastrarLancamentos from "./pages/CadastrarLancamentos/CadastrarLancamentos";
+import LancamentosAdm from "./pages/Lancamentos/LancamentosAdm";
 
 import * as serviceWorker from './serviceWorker';
+import { parseJwt } from './services/auth';
 
 //rotas
 
@@ -29,14 +31,29 @@ const RotaPrivada = ({ component: Component }) => (
     >
     </Route>
 )
+const PermissaoAdm = ({ component: Component}) => (
+    <Route 
+        render={
+            props =>
+                parseJwt().Permissao === "ADMINISTRADOR" ? (
+                    <Component {...props} />
+                ) : (
+                    <Redirect
+                    to={{pathname: "/login", state: {from: props.location}}} />
+                )
+        }
+    />
+);
+
 const routing = (
     <Router>
         <div>
             <Switch>
                 <Route exact path='/' component={App} />
-                <RotaPrivada path='/categorias' component={Categorias} />
+                <PermissaoAdm path='/categorias' component={Categorias} />
                 <RotaPrivada path="/lancamentos" component={Lancamentos} />
-                <RotaPrivada path="/cadastrarLancamentos" component={CadastrarLancamentos} />
+                <PermissaoAdm path="/lancamentosAdm" component={LancamentosAdm} />
+                <PermissaoAdm path="/cadastrarLancamentos" component={CadastrarLancamentos} />
                 <Route path="/login" component={Login} />
                 <Route path="/cadastro" component={Cadastro} />
                 <Route component={NaoEncontrado} />

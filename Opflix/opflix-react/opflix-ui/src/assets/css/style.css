@@ -31,6 +31,9 @@ nav > .spike{
     background-position: right;
     background-size: 60em;
     padding: 7em;
+    display: flex;
+    flex-direction: column;
+    margin-left: -50em;
 }
 .homeCorpoBot{
     background: linear-gradient(to right , rgba(0, 0, 0, 0.164), rgb(0, 0, 0)), url(../img/Banner2.png);
@@ -58,8 +61,7 @@ nav > .spike{
 footer{
     background: #ffffff;
     color: #000000;
-    /* position: absolute;
-    bottom: 0; */
+    bottom: 0;
     width: 100%;
     display: flex;
     flex-direction: column;
