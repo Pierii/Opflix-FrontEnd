@@ -7,7 +7,7 @@ import "../../assets/css/login.css";
 import { Link } from "react-router-dom";
 
 import Axios from "axios";
-import Footer from "../../components/Footer/Footer";
+import FooterLogin from "../../components/Footer/FooterLogin";
 
 import { parseJwt } from '../../services/auth';
 
@@ -42,7 +42,7 @@ class Login extends Component {
     efetuarLogin = (event) => {
         event.preventDefault();
 
-        let url = "http://localhost:5000/api/login";
+        let url = "http://192.168.5.84:5000/api/login";
 
         Axios.post(url, {
             headers: {
@@ -98,7 +98,7 @@ class Login extends Component {
                     <Link className="login_a" to="/cadastro">Não tem uma conta?</Link>
                 </form>
             </section>
-            <Footer></Footer>
+                <FooterLogin></FooterLogin>
             </div>
         );
     }

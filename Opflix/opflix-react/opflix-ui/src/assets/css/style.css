@@ -19,6 +19,11 @@ nav > .spike{
     display: flex;
     margin-left: 50em;
 }
+.login_top{
+    text-decoration: none;
+    color: #000000;
+    font-size: 2em;
+}
 /* FIM NAV */
 .corpo {
     background: #000000;
@@ -50,13 +55,22 @@ nav > .spike{
     font-size: 1.2em;
 }
 .login_btn{
-    background: rgb(70, 70, 219);
+    background: #3D36B9;
     text-decoration: none;
     font-size: 2em;
     color: #ffffff;
     border-radius: 5px;
     padding: 10px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+
 }
+.login_btn:hover{
+    background-color: #ffffff;
+    color: #3D36B9;
+}
+
 /* FOOTER */
 footer{
     background: #ffffff;

@@ -16,7 +16,7 @@ class Lancamento extends Component{
     }
 
     componentDidMount(){
-        Axios.get('http://localhost:5000/api/lancamentos',{
+        Axios.get('http://192.168.5.84:5000/api/lancamentos',{
             headers: {
                 Authorization: 'Bearer '+localStorage.getItem('usuario-opflix')
             }

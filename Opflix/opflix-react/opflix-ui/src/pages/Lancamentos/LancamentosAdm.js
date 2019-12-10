@@ -10,7 +10,7 @@ import Axios from "axios";
 
 import { Link } from "react-router-dom";
 
-class Lancamento extends Component{
+class LancamentosAdm extends Component{
 
     constructor(){
         super();
@@ -20,7 +20,7 @@ class Lancamento extends Component{
     }
 
     componentDidMount(){
-        Axios.get('http://localhost:5000/api/lancamentos',{
+        Axios.get('http://192.168.5.84:5000/api/lancamentos',{
             headers: {
                 Authorization: 'Bearer '+localStorage.getItem('usuario-opflix')
             }
@@ -37,7 +37,10 @@ class Lancamento extends Component{
     render() {
         return(
             <div>
-                {/* <Nav></Nav> */}
+                <Nav></Nav>
+                <nav className="cabecalhoPrincipal-nav">
+                            {this.state.Permissao}
+                        </nav>
                 <div className="lancamentosCorpo">
                 <Link className="login_a" to="/cadastrarLancamentos">Cadastrar Lancamentos</Link>                    
                             <table id="tabela-lista">
@@ -58,11 +61,12 @@ class Lancamento extends Component{
                                             <tr>
                                                 <td>{element.titulo}</td>
                                                 <td>{element.sinopse}</td>
-                                                <td>{element.idVeiculos}</td>
+                                                <td>{element.idVeiculosNavigation.veiculo}</td>
                                                 <td>{element.tempoDuracao}</td>
-                                                <td>{element.idCategoriaNavigation}</td>
+                                                <td>{element.idCategoriaNavigation.categoria}</td>
                                                 <td>{element.dataLancamento}</td>
-                                                <td>{element.idFormato}</td>
+                                                <td>{element.idFormatoNavigation.formato}</td>
+                                                <Link className="local_a" to="/localizacoes">Ver Mapa</Link>                    
                                             </tr>
                                         )
                                     })}
@@ -74,4 +78,4 @@ class Lancamento extends Component{
         );
     }
 }
-export default Lancamento;
+export default LancamentosAdm;

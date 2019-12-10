@@ -12,6 +12,7 @@ import Lancamentos from "./pages/Lancamentos/Lancamentos";
 import Cadastro from "./pages/Cadastro/Cadastro";
 import CadastrarLancamentos from "./pages/CadastrarLancamentos/CadastrarLancamentos";
 import LancamentosAdm from "./pages/Lancamentos/LancamentosAdm";
+import Localizacoes from "./pages/Localizacoes/Localizacoes";
 
 import * as serviceWorker from './serviceWorker';
 import { parseJwt } from './services/auth';
@@ -30,7 +31,8 @@ const RotaPrivada = ({ component: Component }) => (
         }
     >
     </Route>
-)
+);
+
 const PermissaoAdm = ({ component: Component}) => (
     <Route 
         render={
@@ -52,6 +54,7 @@ const routing = (
                 <Route exact path='/' component={App} />
                 <PermissaoAdm path='/categorias' component={Categorias} />
                 <RotaPrivada path="/lancamentos" component={Lancamentos} />
+                <RotaPrivada path="/localizacoes" component={Localizacoes} />
                 <PermissaoAdm path="/lancamentosAdm" component={LancamentosAdm} />
                 <PermissaoAdm path="/cadastrarLancamentos" component={CadastrarLancamentos} />
                 <Route path="/login" component={Login} />

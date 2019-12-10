@@ -4,11 +4,15 @@ import logo from "../../assets/img/OpflixLogo2.png";
 
 import { Link } from "react-router-dom";
 
+import "../../assets/css/login.css"; 
+
 import Axios from "axios";
+import FooterLogin from "../../components/Footer/FooterLogin";
 
 class Cadastro extends Component {
     render() {
         return (
+            <div>
             <section className="cadastroCorpo">
                 <img src={logo} />
             <div input_email>
@@ -40,7 +44,7 @@ class Cadastro extends Component {
                 </div>
                 <div input_senha>
                     <input
-                        className="input_cadastro"
+                        className="input_senha"
                         placeholder="Senha"
                         type="password"
                         name="password"
@@ -52,6 +56,8 @@ class Cadastro extends Component {
                 </div>
                 <Link className="cadastro_a" to="/login">Já tem uma conta?</Link>
             </section>
+            <FooterLogin></FooterLogin>
+            </div>
         )
 
     }

@@ -1,3 +1,34 @@
 .lancamentosCorpo{
     color: #ffffff;
+    background-color: #000;
+    margin-top: 6.4em;
+}
+.buraco{
+    margin-top: 35em;
+}
+.banner{
+    background: linear-gradient( rgba(255,255,255,0), rgb(0, 0, 0)), url(../img/Banner3.png);
+    background-repeat: cover;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    margin-top: -10em;
+    padding: 2em;
+}
+#item{
+    background-color: #000;
+    margin-bottom: 10px;
+    border: 2px solid white;
+    margin: 5em 10em 1em 10em;
+}
+#element{
+    list-style: none;
+    }
+#element_t{
+    list-style: none;
+    text-align: center;
+    font-size: 2em;
+}
+#flex{
+    display: flex;
+    flex-direction: column; 
 }

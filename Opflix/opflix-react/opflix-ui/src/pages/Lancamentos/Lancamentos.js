@@ -8,64 +8,56 @@ import Footer from "../../components/Footer/Footer";
 import "../../assets/css/listas.css";
 import Axios from "axios";
 
-class Lancamento extends Component{
+import { Link } from "react-router-dom";
 
-    constructor(){
+class Lancamento extends Component {
+
+    constructor() {
         super();
         this.state = {
             lista: []
         };
     }
 
-    componentDidMount(){
-        Axios.get('http://localhost:5000/api/lancamentos',{
+    componentDidMount() {
+        Axios.get('http://192.168.5.84:5000/api/lancamentos', {
             headers: {
-                Authorization: 'Bearer '+localStorage.getItem('usuario-opflix')
+                Authorization: 'Bearer ' + localStorage.getItem('usuario-opflix')
             }
         })
             .then(data => {
-                this.setState({lista: data.data});
+                this.setState({ lista: data.data });
                 console.log(this.state)
             })
             .catch(erro => {
                 console.log(erro);
             });
-        }
+    }
 
     render() {
-        return(
+        return (
             <div>
                 <Nav></Nav>
                 <div className="lancamentosCorpo">
-                    
-                            <table id="tabela-lista">
-                                <thead>
-                                    <tr>
-                                        <th>Título</th>
-                                        <th>Sinopse</th>
-                                        <th>Veículo</th>
-                                        <th>Tempo</th>
-                                        <th>Categoria</th>
-                                        <th>Data de lançamento</th>
-                                        <th>Formato</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tabelaListaCorpo">
-                                    {this.state.lista.map(element => {
-                                        return (
-                                            <tr>
-                                                <td>{element.titulo}</td>
-                                                <td>{element.sinopse}</td>
-                                                <td>{element.idVeiculos}</td>
-                                                <td>{element.tempoDuracao}</td>
-                                                <td>{element.idCategoriaNavigation}</td>
-                                                <td>{element.dataLancamento}</td>
-                                                <td>{element.idFormato}</td>
-                                            </tr>
-                                        )
-                                    })}
-                                </tbody>
-                            </table>
+                    <div className="banner">
+                        <div className="buraco"></div>
+                    </div>
+                    {this.state.lista.map(element => {
+                        return (
+                            <ul id="item">
+                                <li id="element_t">{element.titulo}</li>
+                                <div id="flex">
+                                    <li id="element">Sinopse: {element.sinopse}</li>
+                                    <li id="element">Plataforma: {element.idVeiculosNavigation.veiculo}</li>
+                                    <li id="element">Tempo: {element.tempoDuracao}</li>
+                                    <li id="element">Categoria: {element.idCategoriaNavigation.categoria}</li>
+                                    <li id="element">Release: {element.dataLancamento}</li>
+                                    <li id="element">Formato: {element.idFormatoNavigation.formato}</li>
+                                </div>
+                            </ul>
+                        )
+                    })}
+                    <Link className="local_a" to="/localizacoes">Ver Mapa</Link>
                 </div>
                 <Footer></Footer>
             </div>
