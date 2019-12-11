@@ -96,6 +96,10 @@ class Login extends Component {
                         <button className="submit_login">Fazer login</button>
                     </div>
                     <Link className="login_a" to="/cadastro">Não tem uma conta?</Link>
+
+                    <p style={{color: "red", textAlign: "center"}}>
+                        {this.state.Erro}  
+                    </p>
                 </form>
             </section>
                 <FooterLogin></FooterLogin>

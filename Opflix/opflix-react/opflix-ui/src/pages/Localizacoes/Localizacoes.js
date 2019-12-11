@@ -66,7 +66,7 @@ class Localizacoes extends Component {
                 >
                     {this.state.lista.map(element => {
                         return (
-                            <Marker position={{ lat: element.latitude, lng: element.longitude }} text={element.nomeLancamento} label={element.nomeLancamento.toString()} onClick={() => this.handleToggleOpen()}>
+                            <Marker position={{ lat: element.latitude, lng: element.longitude }} text={element.tituloLocal} label={element.tituloLocal.toString()} onClick={() => this.handleToggleOpen()}>
                                 {
                                     this.state.isOpen &&
                                     <InfoWindow onCloseClick={this.props.handleCloseCall}>

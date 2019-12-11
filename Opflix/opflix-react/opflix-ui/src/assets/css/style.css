@@ -8,9 +8,9 @@ body{
 /* NAV */
 nav{
     background: #ffffff;
-    box-shadow: 0 10px 6px -2px #00000033;
+    box-shadow: 0 10px 6px -2px #00000055;
     display: flex;
-    position: fixed; 
+    position: fixed;
     top: 0; 
     width: 100%; 
 }

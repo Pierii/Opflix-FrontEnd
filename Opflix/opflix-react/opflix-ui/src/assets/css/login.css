@@ -1,5 +1,6 @@
 *{
     margin: auto;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 body{
     background-image: url(../img/hero.jpg);
@@ -100,7 +101,7 @@ body{
     margin: 4px 2px;
     cursor: pointer;
     font-size: 2em;
-    -webkit-transition-duration: 0.4s; /* Safari */
+    -webkit-transition-duration: 0.4s; 
     transition-duration: 0.4s;
 }
 .submit_cadastro:hover{

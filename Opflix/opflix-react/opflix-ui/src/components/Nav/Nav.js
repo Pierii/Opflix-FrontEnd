@@ -9,7 +9,7 @@ function Nav(){
         <img src={logo} width="20%" />
         
         <img className="spike" src={spike} alt="Spike sentado" height="200" width="100" />
-        <Link className="login_top" to="/login">Login</Link>
+        <Link className="login_top" to="/login">Login/Logout</Link>
       </nav>
         );
     }
