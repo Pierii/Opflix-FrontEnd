@@ -70,6 +70,15 @@ nav > .spike{
     background-color: #ffffff;
     color: #3D36B9;
 }
+.local_a{
+    background: #fff;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    width: 10%;
+    justify-content: center;    
+    cursor: pointer;
+}
 
 /* FOOTER */
 footer{
